@@ -1,12 +1,18 @@
 package org.coronium.test;
 
+import org.coronium.page.core.ui.driver.Driver;
 import org.coronium.util.DriverManager;
 import org.coronium.util.DriverManagerFactory;
 import org.coronium.util.DriverType;
+import org.coronium.util.DriverWrapper;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 public abstract class AutoTest {
@@ -22,6 +28,7 @@ public abstract class AutoTest {
     public void afterClass() {
         driver.quit();
         driver = null;
+
     }
 
     public static void initDriver() {
@@ -32,6 +39,13 @@ public abstract class AutoTest {
             driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
             driver.get(environment);
         }
+    }
+
+    public static Wait<WebDriver> newWaitWithTimeout(long timeout){
+        return new FluentWait<WebDriver>(driver)
+                .withTimeout(timeout, TimeUnit.SECONDS)
+                .ignoring(NoSuchElementException.class)
+                .ignoring(StaleElementReferenceException.class);
     }
 
     public static WebDriver getDriver() {
