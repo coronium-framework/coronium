@@ -1,10 +1,8 @@
 package org.coronium.test;
 
-import org.coronium.page.core.ui.driver.Driver;
 import org.coronium.util.DriverManager;
 import org.coronium.util.DriverManagerFactory;
 import org.coronium.util.DriverType;
-import org.coronium.util.DriverWrapper;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -28,7 +26,6 @@ public abstract class AutoTest {
     public void afterClass() {
         driver.quit();
         driver = null;
-
     }
 
     public static void initDriver() {
