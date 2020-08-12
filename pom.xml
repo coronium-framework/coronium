@@ -93,7 +93,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>2.53.1</version>
+            <version>3.141.59</version>
         </dependency>
         <!-- TestNG -->
         <dependency>
@@ -102,6 +102,26 @@
             <version>6.8</version>
             <scope>compile</scope>
             <optional>true</optional>
+        </dependency>
+        <!-- Allure Annotation -->
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-java-annotations</artifactId>
+            <version>1.5.4</version>
+        </dependency>
+
+        <!-- Html Elements -->
+        <dependency>
+            <groupId>ru.yandex.qatools.htmlelements</groupId>
+            <artifactId>htmlelements-java</artifactId>
+            <version>1.20.0</version>
+        </dependency>
+
+        <!-- Google Truth for Assert -->
+        <dependency>
+            <groupId>com.google.truth</groupId>
+            <artifactId>truth</artifactId>
+            <version>1.0.1</version>
         </dependency>
     </dependencies>
 </project>
