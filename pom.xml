@@ -12,7 +12,7 @@
 
     <groupId>org.coronium</groupId>
     <artifactId>coronium</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <distributionManagement>
         <snapshotRepository>
@@ -109,14 +109,12 @@
             <artifactId>allure-java-annotations</artifactId>
             <version>1.5.4</version>
         </dependency>
-
         <!-- Html Elements -->
         <dependency>
             <groupId>ru.yandex.qatools.htmlelements</groupId>
             <artifactId>htmlelements-java</artifactId>
             <version>1.20.0</version>
         </dependency>
-
         <!-- Google Truth for Assert -->
         <dependency>
             <groupId>com.google.truth</groupId>
