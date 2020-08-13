@@ -1,12 +1,13 @@
 package org.coronium.page;
 
+import org.coronium.page.core.ui.js.JavascriptWait;
+import org.coronium.page.core.ui.pages.Visibility;
 import org.coronium.test.AutoTest;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
 import ru.yandex.qatools.htmlelements.loader.HtmlElementLoader;
-import smc.page.core.ui.js.JavascriptWait;
-import smc.page.core.ui.pages.Visibility;
+
 
 public class AutoPage {
 

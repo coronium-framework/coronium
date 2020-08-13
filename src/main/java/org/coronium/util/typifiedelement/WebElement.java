@@ -1,7 +1,7 @@
 package org.coronium.util.typifiedelement;
 
+import org.openqa.selenium.interactions.Locatable;
 import org.openqa.selenium.interactions.internal.Coordinates;
-import org.openqa.selenium.internal.Locatable;
 import ru.yandex.qatools.htmlelements.element.TypifiedElement;
 
 
