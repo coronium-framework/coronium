@@ -1,4 +1,5 @@
-package applepage.page;
+package org.coronium.page.applepage;
+
 import org.coronium.page.core.ui.annotations.Visible;
 import org.coronium.test.AutoTest;
 import org.openqa.selenium.WebElement;

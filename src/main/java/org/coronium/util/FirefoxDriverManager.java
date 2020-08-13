@@ -1,6 +1,8 @@
 package org.coronium.util;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.internal.ProfilesIni;
 
 public class FirefoxDriverManager extends DriverManager {
     @Override
@@ -9,3 +11,4 @@ public class FirefoxDriverManager extends DriverManager {
         this.driver = new FirefoxDriver();
     }
 }
+

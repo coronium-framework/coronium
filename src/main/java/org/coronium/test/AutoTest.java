@@ -11,13 +11,17 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 import java.time.Duration;
+
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 public abstract class AutoTest {
     protected static String environment = System.getProperty("environment");
     protected static WebDriver driver = null;
     private static final ThreadLocal<Wait<WebDriver>> wait = ThreadLocal.withInitial(() -> null);
+
+    protected static String browser = System.getProperty("browser");
 
     @BeforeClass
     public void beforeClass() {
@@ -33,7 +37,27 @@ public abstract class AutoTest {
     public static void initDriver() {
         if (driver == null) {
             DriverManagerFactory driverManagerFactory = new DriverManagerFactory();
-            DriverManager driverManager = driverManagerFactory.getDriverManager(DriverType.CHROME);
+            DriverManager driverManager = null;
+            try {
+                switch (browser) {
+                    case "ie":
+                        driverManager = driverManagerFactory.getDriverManager(DriverType.IE);
+                        break;
+                    case "edge":
+                        driverManager = driverManagerFactory.getDriverManager(DriverType.EDGE);
+                        break;
+                    case "gecko":
+                    case "firefox":
+                        driverManager = driverManagerFactory.getDriverManager(DriverType.FIREFOX);
+                        break;
+                    default:
+                        driverManager = driverManagerFactory.getDriverManager(DriverType.CHROME);
+                        break;
+                }
+            } catch (Exception e) {
+                driverManager = driverManagerFactory.getDriverManager(DriverType.CHROME);
+            }
+
             driver = driverManager.getWebDriver();
             driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
             driver.get(environment);

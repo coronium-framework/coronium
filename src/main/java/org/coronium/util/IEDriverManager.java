@@ -15,3 +15,4 @@ public class IEDriverManager extends DriverManager {
         this.driver = new InternetExplorerDriver(options);
     }
 }
+

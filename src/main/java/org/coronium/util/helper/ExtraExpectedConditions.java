@@ -34,7 +34,7 @@ public class ExtraExpectedConditions {
         );
     }
 
-            private static <T> ExpectedCondition<T> expectedCondition(Function<WebDriver, T> function, String string){
+            private static <T> ExpectedCondition<T> expectedCondition(Function< WebDriver, T> function, String string){
                 return new ExpectedCondition<T>() {
                     @Override
                     public T apply(WebDriver driver) {

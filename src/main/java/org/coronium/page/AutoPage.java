@@ -9,6 +9,12 @@ import org.openqa.selenium.support.ui.Wait;
 import ru.yandex.qatools.htmlelements.loader.HtmlElementLoader;
 
 public class AutoPage {
+
+import smc.page.core.ui.js.JavascriptWait;
+import smc.page.core.ui.pages.Visibility;
+
+public class AutoPage {
+
     protected final WebDriver driver;
     protected Wait<WebDriver> wait;
     protected Visibility visibility;
@@ -28,6 +34,14 @@ public class AutoPage {
     }
 
     private AutoPage get() {
+
+    public AutoPage get(long timeoutInSeconds) {
+        updatePageTimeout(timeoutInSeconds);
+        return get();
+    }
+
+    private AutoPage get(){
+
         HtmlElementLoader.populatePageObject(this,getDriver());
         visibility.waitForAnnotatedElementVisibility(this);
         javascriptWait.waitForJavascriptEventsOnLoad();
@@ -35,8 +49,8 @@ public class AutoPage {
         return (AutoPage) this;
     }
 
-    private void updatePageTimeout(long timeout) {
-        wait = AutoTest.newWaitWithTimeout(timeout);
+    private void updatePageTimeout(long timeoutInSeconds) {
+        wait = AutoTest.newWaitWithTimeout(timeoutInSeconds);
         visibility = new Visibility(wait, (JavascriptExecutor) AutoTest.getDriver());
         javascriptWait = new JavascriptWait(driver, wait);
     }

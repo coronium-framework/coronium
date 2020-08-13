@@ -3,6 +3,7 @@ package org.coronium.util;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class EdgeDriverManager extends DriverManager {
     @Override
@@ -13,3 +14,4 @@ public class EdgeDriverManager extends DriverManager {
         this.driver = new EdgeDriver(options);
     }
 }
+

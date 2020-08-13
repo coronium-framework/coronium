@@ -10,9 +10,9 @@
         <version>9</version>
     </parent>
 
-    <groupId>org.coronium</groupId>
+    <groupId>com.github.coronium-framework</groupId>
     <artifactId>coronium</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
 
     <distributionManagement>
         <snapshotRepository>
@@ -43,7 +43,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
+                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
