@@ -46,6 +46,9 @@ public abstract class AutoTest {
                     case "firefox":
                         driverManager = driverManagerFactory.getDriverManager(DriverType.FIREFOX);
                         break;
+                    case "safari":
+                        driverManager = driverManagerFactory.getDriverManager(DriverType.SAFARI);
+                        break;
                     default:
                         driverManager = driverManagerFactory.getDriverManager(DriverType.CHROME);
                         break;
