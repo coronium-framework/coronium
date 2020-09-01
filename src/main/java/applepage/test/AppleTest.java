@@ -13,7 +13,7 @@ public class AppleTest extends AutoTest {
 
     @Test
     public void AppleTest() {
-        driver.manage().window().maximize();
+        /*driver.manage().window().maximize();*/
         BuyPage buyPage = LandingPage.open()
                 .clickMacPage()
                 .clickMacbookPro16()

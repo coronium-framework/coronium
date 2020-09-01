@@ -32,16 +32,12 @@ public class DriverManagerFactory {
 
         switch (type) {
             case IE:
-                /*driverManager = new IEDriverManager();*/
                 return new IEDriverManager();
             case EDGE:
-                /*driverManager = new EdgeDriverManager();*/
                 return new EdgeDriverManager();
             case FIREFOX:
-                /*driverManager = new FirefoxDriverManager();*/
                 return new FirefoxDriverManager();
             case SAFARI:
-                /*driverManager = new SafariDriverManager();*/
                 return new SafariDriverManager();
             case CHROME:
                 return new ChromeDriverManager();
