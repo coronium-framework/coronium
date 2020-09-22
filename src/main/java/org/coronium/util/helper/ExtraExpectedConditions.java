@@ -14,8 +14,8 @@ import static org.coronium.util.constant.Locator.SPINNER_CSS;
 public class ExtraExpectedConditions {
     public static ExpectedCondition<Boolean> invisibilityOfSpinner(){
         return expectedCondition(
-            getDriver -> {
-                List<WebElement> elements = getDriver.findElements(By.cssSelector(SPINNER_CSS));
+            driver -> {
+                List<WebElement> elements = driver.findElements(By.cssSelector(SPINNER_CSS));
                 return elements.size() <= 0 ||
                         elements.parallelStream()
                         .noneMatch(WebElement::isDisplayed);
@@ -25,8 +25,8 @@ public class ExtraExpectedConditions {
 
     public static ExpectedCondition<Boolean> invisibilityOfModal(){
         return expectedCondition(
-                getDriver ->{
-                    List<WebElement> elements = getDriver.findElements(By.cssSelector(MODAL_CSS));
+                driver ->{
+                    List<WebElement> elements = driver.findElements(By.cssSelector(MODAL_CSS));
                     return elements.size() <=0 ||
                             elements.parallelStream().noneMatch(WebElement::isDisplayed);
                 },

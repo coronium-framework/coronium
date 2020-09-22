@@ -29,7 +29,17 @@ public class AutoPage {
         return get();
     }
 
-    private AutoPage get(){
+    public AutoPage get(String url) {
+        driver.get(url);
+        return get();
+    }
+
+    public AutoPage get(String url, long timeout) {
+        updatePageTimeout(timeout);
+        return get(url);
+    }
+
+    public AutoPage get(){
         HtmlElementLoader.populatePageObject(this,getDriver());
         visibility.waitForAnnotatedElementVisibility(this);
         javascriptWait.waitForJavascriptEventsOnLoad();
