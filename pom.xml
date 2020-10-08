@@ -12,7 +12,7 @@
 
     <groupId>com.github.coronium-framework</groupId>
     <artifactId>coronium</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.4</version>
 
     <distributionManagement>
         <snapshotRepository>
@@ -138,7 +138,7 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>4.2.0</version>
+            <version>4.2.2</version>
         </dependency>
     </dependencies>
 </project>
