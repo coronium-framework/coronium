@@ -1,8 +1,14 @@
 package org.coronium.page.core.ui.pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.coronium.page.AutoPage;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class PageFactory {
+
+    private static final Logger logger = LogManager.getLogger();
 
     public static <T extends AutoPage> T newInstance(Class<T> clazz) {
 
@@ -29,10 +35,12 @@ public class PageFactory {
 
 
     private static <T extends AutoPage> T instantiatePageObject(Class<T> clazz) {
-        try{
-            return clazz.newInstance();
-        } catch (InstantiationException | IllegalAccessException e){
-            throw new RuntimeException("Unable to instantiate Page Object", e);
+        try {
+            return clazz.getDeclaredConstructor().newInstance();
+        } catch (InstantiationException | IllegalAccessException
+                | NoSuchMethodException | InvocationTargetException e) {
+            logger.fatal("Unable to instantiate PageObject", e);
+            throw new IllegalStateException("Unable to instantiate PageObject", e);
         }
     }
 }
