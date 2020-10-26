@@ -1,7 +1,7 @@
-package org.coronium.util.drivers;
+package org.coronium.page.core.ui.driver.drivers;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.coronium.util.DriverManager;
+import org.coronium.page.core.ui.driver.DriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 

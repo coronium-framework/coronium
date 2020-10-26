@@ -12,7 +12,7 @@
 
     <groupId>com.github.coronium-framework</groupId>
     <artifactId>coronium</artifactId>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
 
     <distributionManagement>
         <snapshotRepository>
@@ -78,6 +78,16 @@
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
+            <!-- Allure2 -->
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.10.0</version>
+                <configuration>
+                    <!-- Keep version in sync with dependencies -->
+                    <reportVersion>${allure.version}</reportVersion>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -87,6 +97,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <selenium.version>3.141.59</selenium.version>
+        <allure.version>2.13.1</allure.version>
     </properties>
 
     <dependencies>
@@ -106,9 +117,14 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.8</version>
-            <scope>compile</scope>
-            <optional>true</optional>
+            <version>6.14.3</version> <!-- 6.8 -->
+            <scope>test</scope> <!-- compile -->
+          <!--  <optional>true</optional>-->
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
         </dependency>
         <!-- Allure Annotation -->
         <dependency>
@@ -127,12 +143,6 @@
             <groupId>com.google.truth</groupId>
             <artifactId>truth</artifactId>
             <version>1.0.1</version>
-        </dependency>
-        <!-- Apache Logger -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.13.3</version>
         </dependency>
         <!-- WebDriver -->
         <dependency>
@@ -156,6 +166,50 @@
             <groupId>com.paulhammant</groupId>
             <artifactId>ngwebdriver</artifactId>
             <version>1.1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>7.3.0</version>
+        </dependency>
+        <dependency>
+            <!-- Sauce -->
+            <groupId>com.saucelabs</groupId>
+            <artifactId>saucerest</artifactId>
+            <version>1.0.43</version>
+        </dependency>
+        <dependency>
+            <groupId>com.saucelabs</groupId>
+            <artifactId>sauce_java_common</artifactId>
+            <version>2.1.23</version>
+        </dependency>
+        <dependency>
+            <groupId>com.saucelabs</groupId>
+            <artifactId>sauce_testng</artifactId>
+            <version>2.1.25</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.30</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.30</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.14.3</version>
+            <scope>compile</scope>
+        </dependency>
+        <!--- JSON Reader -->
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
         </dependency>
     </dependencies>
 </project>

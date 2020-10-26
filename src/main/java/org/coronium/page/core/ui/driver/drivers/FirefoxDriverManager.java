@@ -1,6 +1,6 @@
-package org.coronium.util.drivers;
+package org.coronium.page.core.ui.driver.drivers;
 
-import org.coronium.util.DriverManager;
+import org.coronium.page.core.ui.driver.DriverManager;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 

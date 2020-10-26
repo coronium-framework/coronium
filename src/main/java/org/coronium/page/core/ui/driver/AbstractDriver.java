@@ -1,21 +1,23 @@
-package org.coronium.util;
+package org.coronium.page.core.ui.driver;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.coronium.page.core.ui.common.Property;
-import org.coronium.page.core.ui.driver.Driver;
+import org.coronium.page.core.ui.driver.remotes.BrowserStack;
+import org.coronium.page.core.ui.driver.remotes.Sauce;
 import org.coronium.page.core.ui.listeners.LogListener;
 import org.coronium.page.core.ui.proxy.ProxyFactory;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.ImmutableCapabilities;
 import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 
 public abstract class AbstractDriver implements Driver {
     protected static final Logger logger = LogManager.getLogger();
 
-    private EventFiringWebDriver webDriverWrapper;
+    private WebDriverWrapper webDriverWrapper;
 
     @Override
     public EventFiringWebDriver getWebDriver() {
@@ -26,7 +28,27 @@ public abstract class AbstractDriver implements Driver {
      * Creates the Wrapped Driver object and maximises if required.
      */
     public void initialise() {
-        this.webDriverWrapper = setupEventFiringWebDriver(getCapabilities());
+        DesiredCapabilities capsFromImpl = getDesiredCapabilities();
+        DesiredCapabilities caps = (DesiredCapabilities) addProxyIfRequired(capsFromImpl);
+        logger.debug("Browser Capabilities: " + caps);
+
+        this.webDriverWrapper = (WebDriverWrapper) setupEventFiringWebDriver(caps);
+
+        maximiseBrowserIfRequired();
+    }
+
+    private  void maximiseBrowserIfRequired(){
+        if (isMaximiseRequired()) {
+            this.webDriverWrapper.manage().window().maximize();
+        }
+    }
+
+    private boolean isMaximiseRequired() {
+        boolean ableToMaximise = !Sauce.isDesired()
+                && !BrowserStack.isDesired()
+                && !Driver.isNative();
+
+        return Property.wantToMaximise() && ableToMaximise;
     }
 
     private EventFiringWebDriver setupEventFiringWebDriver(Capabilities capabilities) {

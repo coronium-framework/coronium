@@ -1,17 +1,19 @@
 package org.coronium.test;
 
-import org.coronium.util.DriverManager;
-import org.coronium.util.DriverManagerFactory;
-import org.coronium.util.DriverType;
+import org.coronium.page.core.ui.driver.DriverManager;
+import org.coronium.page.core.ui.driver.DriverManagerFactory;
+import org.coronium.page.core.ui.driver.DriverType;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 import java.time.Duration;
+
 
 public abstract class AutoTest {
     protected static String environment = System.getProperty("environment");
