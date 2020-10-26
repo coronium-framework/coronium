@@ -8,14 +8,20 @@ import java.util.Objects;
 import java.util.Properties;
 
 public enum Property {
+    APP_PATH("appPath"),
+    APPLICATION_NAME("applicationName"),
+    BROWSER("browser"),
+    BROWSER_STACK("browserStack"),
+    BROWSER_VERSION("browserVersion"),
+    CAPTURE_URL("captureURL"),
+    GRID_URL("gridURL"),
+    HEADLESS("headless"),
+    MAXIMISE("maximise"),
     PROXY("proxy"),
     PLATFORM("platform"),
     PLATFORM_VERSION("platformVersion"),
-    GRID_URL("gridURL"),
-    BROWSER("browser"),
-    BROWSER_VERSION("browserVersion"),
-    APPLICATION_NAME("applicationName"),
-    HEADLESS("headless");
+    RESOLUTION("resolution"),
+    SAUCE("sauce");
 
     private static Properties properties;
     private  String systemPropertyKey;
@@ -64,6 +70,14 @@ public enum Property {
             throw new IllegalArgumentException(
                     "Properties file '" + configFileName + "' not found.", e);
         }
+    }
+
+    /**
+     * @return true iff the maximise property is equal, ignoring case, to "true"
+     */
+    public static boolean wantToMaximise() {
+        return MAXIMISE.isSpecified()
+                && Boolean.parseBoolean(MAXIMISE.getValue());
     }
 
     public String getValue() {
