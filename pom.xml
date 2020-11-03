@@ -52,6 +52,11 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <additionalOptions>
+                        <doclint>none</doclint>
+                    </additionalOptions>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
