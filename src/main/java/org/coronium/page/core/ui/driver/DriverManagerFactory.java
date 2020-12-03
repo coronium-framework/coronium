@@ -15,7 +15,7 @@ public class DriverManagerFactory {
     public enum Platform {
         WINDOWS, OSX, IOS, ANDROID, NONE
     }
-    private static Driver instantiateDesiredRemote(Driver driver) {
+    public static Driver instantiateDesiredRemote(Driver driver) {
 
         DesiredCapabilities desiredCapabilities = driver.getDesiredCapabilities();
         Platform platform = getPlatformType();
