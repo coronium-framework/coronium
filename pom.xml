@@ -12,7 +12,7 @@
 
     <groupId>com.github.coronium-framework</groupId>
     <artifactId>coronium</artifactId>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
 
     <distributionManagement>
         <snapshotRepository>
@@ -54,7 +54,7 @@
                 </executions>
                 <configuration>
                     <additionalOptions>
-                        <doclint>none</doclint>
+                        <doclint>-Xdoclint:all -Xdoclint:-missing</doclint>
                     </additionalOptions>
                 </configuration>
             </plugin>
