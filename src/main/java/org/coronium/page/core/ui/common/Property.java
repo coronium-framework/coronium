@@ -21,7 +21,9 @@ public enum Property {
     PLATFORM("platform"),
     PLATFORM_VERSION("platformVersion"),
     RESOLUTION("resolution"),
-    SAUCE("sauce");
+    REUSE_BROWSER("reuseBrowser"),
+    SAUCE("sauce"),
+    THREADS("threads");
 
     private static Properties properties;
     private  String systemPropertyKey;
