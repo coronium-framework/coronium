@@ -19,7 +19,7 @@ public class SafariDriverManager extends DriverManager {
 
         }
     }
-        public WebDriver getWebDriver(Capabilities capabilities) {
+        public WebDriver getDriver(Capabilities capabilities) {
             if (Driver.isMobile()) {
                 throw new IllegalArgumentException(
                         "seleniumGridURL or sauceUser and sauceKey must be specified when running on iOS");

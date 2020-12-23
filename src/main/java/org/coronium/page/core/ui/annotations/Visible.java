@@ -9,4 +9,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface Visible {
     String value() default "";
+
+    int checkAtMost() default -1;
 }

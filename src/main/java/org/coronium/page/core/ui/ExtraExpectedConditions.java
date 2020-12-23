@@ -108,8 +108,6 @@ public class ExtraExpectedConditions {
      * Wait for the document ready state to equal 'complete'.
      * Useful for javascript loading on page-load.
      *
-     * @return a {@link ExpectedCondition} which returns <strong>false</strong> if the document
-     *         isn't ready, and <string>true</string> if the document is ready
      */
     public static ExpectedCondition<Boolean> documentBodyReady() {
 
