@@ -2,10 +2,12 @@ package org.coronium.page.core.ui.driver.drivers;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.coronium.page.core.ui.driver.DriverManager;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class ChromeDriverManager extends DriverManager {
+public  class ChromeDriverManager extends DriverManager {
 
     @Override
     protected void createWebDriver() {
@@ -20,5 +22,16 @@ public class ChromeDriverManager extends DriverManager {
         options.addArguments("--disable-gpu");
         options.addArguments("--ignore-certificate-errors");
         this.driver = new ChromeDriver(options);
+    }
+
+    @Override
+    public WebDriver getDriver(Capabilities capabilities) {
+        final ChromeOptions chromeOptions;
+        if (capabilities instanceof ChromeOptions){
+            chromeOptions = (ChromeOptions) capabilities;
+        }else {
+            chromeOptions = new ChromeOptions().merge(capabilities);
+        }
+        return new ChromeDriver(chromeOptions);
     }
 }
