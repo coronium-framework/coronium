@@ -9,14 +9,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
 import java.time.Duration;
 
 
@@ -25,24 +23,24 @@ public  class AutoTest {
     protected static String autoGridURL = System.getProperty("autoGridURL");
     protected static WebDriver driver = null;
     private static DriverLifecycle driverLifecycle;
-    private static final ThreadLocal<Wait<WebDriver>> wait = new ThreadLocal<>();
+    //private static final ThreadLocal<Wait<WebDriver>> wait = new ThreadLocal<>();
     private static final ThreadLocal<AutoTest> autoTest = ThreadLocal.withInitial(AutoTest::new);
-    //private static final ThreadLocal<Wait<WebDriver>> wait = ThreadLocal.withInitial(() -> null);
+    private static final ThreadLocal<Wait<WebDriver>> wait = ThreadLocal.withInitial(() -> null);
     protected static String browser = System.getProperty("browser");
 
     public static AutoTest get(){
         return autoTest.get();
     }
 
-    @BeforeClass( alwaysRun = true )
-    public void beforeClass() throws MalformedURLException {
+    @BeforeMethod( alwaysRun = true )
+    public static void beforeMethod() throws MalformedURLException {
         initDriver();
     }
 
-    @AfterClass( alwaysRun = true )
-    public void afterClass() {
+    @AfterMethod( alwaysRun = true )
+    public void tearDown() {
         driver.quit();
-        driver = null;
+        //driver = null;
     }
 
     @BeforeMethod( alwaysRun = true )
@@ -81,9 +79,14 @@ public  class AutoTest {
 
                 driver = driverManager.getWebDriver();
             }
-            driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
             driver.get(environment);
+            wait.set(newDefaultWait());
+            //driver.manage().timeouts().implicitlyWait(80, TimeUnit.SECONDS);
         }
+    }
+
+    public static Wait<WebDriver> newDefaultWait() {
+        return newWaitWithTimeout(10L);
     }
 
     public static Wait<WebDriver> newWaitWithTimeout(long timeout){
