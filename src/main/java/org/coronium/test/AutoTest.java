@@ -40,6 +40,7 @@ public  class AutoTest {
     @AfterMethod( alwaysRun = true )
     public void tearDown() {
         driver.quit();
+        driver.close();
         //driver = null;
     }
 
