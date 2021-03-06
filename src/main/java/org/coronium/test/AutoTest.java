@@ -10,6 +10,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 
 import java.net.MalformedURLException;
@@ -39,12 +40,15 @@ public  class AutoTest {
 
     @AfterMethod( alwaysRun = true )
     public void tearDown() {
-        driver.quit();
         driver.close();
         //driver = null;
     }
 
-    @BeforeMethod( alwaysRun = true )
+    @AfterSuite( alwaysRun = true )
+    public void stopTest() {
+        driver.quit();
+    }
+    
     public static void initDriver() throws MalformedURLException {
         if (driver == null) {
             if (autoGridURL != null) {
