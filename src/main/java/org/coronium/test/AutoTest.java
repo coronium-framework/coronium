@@ -3,12 +3,14 @@ package org.coronium.test;
 import org.coronium.page.core.ui.driver.DriverManager;
 import org.coronium.page.core.ui.driver.DriverType;
 import org.coronium.page.core.ui.driver.lifecycle.DriverLifecycle;
+import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -38,15 +40,22 @@ public  class AutoTest {
         initDriver();
     }
 
-    @AfterMethod( alwaysRun = true )
-    public void tearDown() {
-        driver.close();
-        //driver = null;
+    @AfterClass()
+    public static void afterTestClass() {
+        try {
+            driver.close();
+        } catch (NoSuchSessionException error) {
+            // Do nothing
+        }
     }
 
     @AfterSuite( alwaysRun = true )
-    public void stopTest() {
-        driver.quit();
+    public void tearDown() {
+        try {
+            driver.quit();
+        } catch (NoSuchSessionException error) {
+            // Do nothing
+        }
     }
     
     public static void initDriver() throws MalformedURLException {
