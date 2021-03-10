@@ -40,63 +40,63 @@ public  class AutoTest {
         initDriver();
     }
 
-    @AfterClass()
-    public static void afterTestClass() {
-        try {
-            driver.close();
-        } catch (NoSuchSessionException error) {
-            // Do nothing
-        }
+    @AfterMethod( alwaysRun = true )
+    public static void afterMethod() {
+        driver.quit();
     }
 
     @AfterSuite( alwaysRun = true )
     public void tearDown() {
-        try {
+        if (!driver.toString().contains("null")) {
             driver.quit();
-        } catch (NoSuchSessionException error) {
-            // Do nothing
         }
     }
     
     public static void initDriver() throws MalformedURLException {
-        if (driver == null) {
-            if (autoGridURL != null) {
-                /* To Do:
-                 * Add code for other browsers when using grid
-                 */
-                driver = new RemoteWebDriver(new URL(autoGridURL), new ChromeOptions());
-            } else {
-                /*DriverManagerFactory driverManagerFactory = new DriverManagerFactory();*/
-                DriverManager driverManager = null;
-                try {
-                    switch (browser) {
-                        case "ie":
-                            driverManager = driverManager.getDriverManager(DriverType.IE);
-                            break;
-                        case "edge":
-                            driverManager = driverManager.getDriverManager(DriverType.EDGE);
-                            break;
-                        case "gecko":
-                        case "firefox":
-                            driverManager = driverManager.getDriverManager(DriverType.FIREFOX);
-                            break;
-                        case "safari":
-                            driverManager = driverManager.getDriverManager(DriverType.SAFARI);
-                            break;
-                        default:
-                            driverManager = driverManager.getDriverManager(DriverType.CHROME);
-                            break;
-                    }
-                } catch (Exception e) {
-                    driverManager = driverManager.getDriverManager(DriverType.CHROME);
-                }
-
-                driver = driverManager.getWebDriver();
+        if (driver != null) {
+            if (!driver.toString().contains("null")) {
+                // Close the previous window if it's still open
+                driver.quit();
             }
-            driver.get(environment);
-            wait.set(newDefaultWait());
-            //driver.manage().timeouts().implicitlyWait(80, TimeUnit.SECONDS);
         }
+
+        if (autoGridURL != null) {
+            /* To Do:
+             * Add code for other browsers when using grid
+             */
+            driver = new RemoteWebDriver(new URL(autoGridURL), new ChromeOptions());
+        } else {
+            /*DriverManagerFactory driverManagerFactory = new DriverManagerFactory();*/
+            DriverManager driverManager = null;
+            try {
+                switch (browser) {
+                    case "ie":
+                        driverManager = driverManager.getDriverManager(DriverType.IE);
+                        break;
+                    case "edge":
+                        driverManager = driverManager.getDriverManager(DriverType.EDGE);
+                        break;
+                    case "gecko":
+                    case "firefox":
+                        driverManager = driverManager.getDriverManager(DriverType.FIREFOX);
+                        break;
+                    case "safari":
+                        driverManager = driverManager.getDriverManager(DriverType.SAFARI);
+                        break;
+                    default:
+                        driverManager = driverManager.getDriverManager(DriverType.CHROME);
+                        break;
+                }
+            } catch (Exception e) {
+                driverManager = driverManager.getDriverManager(DriverType.CHROME);
+            }
+
+            driver = driverManager.getWebDriver();
+        }
+        driver.get(environment);
+        wait.set(newDefaultWait());
+        //driver.manage().timeouts().implicitlyWait(80, TimeUnit.SECONDS);
+
     }
 
     public static Wait<WebDriver> newDefaultWait() {
