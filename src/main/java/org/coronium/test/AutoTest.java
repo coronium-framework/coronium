@@ -3,11 +3,10 @@ package org.coronium.test;
 import org.coronium.page.core.ui.driver.DriverManager;
 import org.coronium.page.core.ui.driver.DriverType;
 import org.coronium.page.core.ui.driver.lifecycle.DriverLifecycle;
-import org.openqa.selenium.NoSuchSessionException;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.annotations.AfterClass;
@@ -26,10 +25,10 @@ public  class AutoTest {
     protected static String autoGridURL = System.getProperty("autoGridURL");
     protected static WebDriver driver = null;
     private static DriverLifecycle driverLifecycle;
-    //private static final ThreadLocal<Wait<WebDriver>> wait = new ThreadLocal<>();
     private static final ThreadLocal<AutoTest> autoTest = ThreadLocal.withInitial(AutoTest::new);
     private static final ThreadLocal<Wait<WebDriver>> wait = ThreadLocal.withInitial(() -> null);
     protected static String browser = System.getProperty("browser");
+    static Duration GLOBAL_PAGE_LOAD_TIMEOUT = Duration.ofSeconds(20);
 
     public static AutoTest get(){
         return autoTest.get();
@@ -113,4 +112,19 @@ public  class AutoTest {
     public static WebDriver getDriver() { return driver; }
 
     public static Wait<WebDriver> getWait() { return wait.get();  }
+
+    public static void waitForElementToBeClickable(WebElement element) {
+        newWaitWithTimeout(GLOBAL_PAGE_LOAD_TIMEOUT.getSeconds())
+                .until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public static void waitForElementToBeVisible(WebElement element) {
+        newWaitWithTimeout(GLOBAL_PAGE_LOAD_TIMEOUT.getSeconds())
+                .until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public static void waitForElementToBeVisible(By byLocator) {
+        newWaitWithTimeout(GLOBAL_PAGE_LOAD_TIMEOUT.getSeconds())
+                .until(ExpectedConditions.visibilityOfElementLocated(byLocator));
+    }
 }
