@@ -12,7 +12,7 @@
 
     <groupId>com.github.coronium-framework</groupId>
     <artifactId>coronium</artifactId>
-    <version>1.1.6</version>
+    <version>1.2.1</version>
 
     <distributionManagement>
         <snapshotRepository>
