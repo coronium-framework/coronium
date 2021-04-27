@@ -104,7 +104,7 @@ public  class AutoTest {
 
     public static Wait<WebDriver> newWaitWithTimeout(long timeout){
         return new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofDays(timeout)) //if breaks,change here
+                .withTimeout(Duration.ofSeconds(timeout)) //if breaks,change here
                 .ignoring(NoSuchElementException.class)
                 .ignoring(StaleElementReferenceException.class);
     }
